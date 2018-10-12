@@ -82,10 +82,10 @@ var fsm = (function() {
 			ConnectionOverlays: [
 				["Arrow", {
 					location: 1,
-					length: 14,
+					length: 20,
 					foldback: 0.8
 					}],
-				["Label", {location:-50}]
+				["Label", {location:0.5}]
 			],
 			Connector: ["StateMachine", {curviness:0}],
 			PaintStyle: {strokeStyle:'black', lineWidth:2}
