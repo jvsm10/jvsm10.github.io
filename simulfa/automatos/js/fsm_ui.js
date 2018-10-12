@@ -88,7 +88,7 @@ var fsm = (function() {
 				["Label", {location:0.5}]
 			],
 			Connector: ["StateMachine", {curviness:20}],
-			PaintStyle: {strokeStyle:'#0dd', lineWidth:2}
+			PaintStyle: {strokeStyle:'black', lineWidth:2}
 		});
 
 		jsPlumb.bind("click", connectionClicked);
