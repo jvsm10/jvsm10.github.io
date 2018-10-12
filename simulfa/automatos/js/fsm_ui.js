@@ -82,8 +82,8 @@ var fsm = (function() {
 			ConnectionOverlays: [
 				["Arrow", {
 					location: 1,
-					length: 20,
-					foldback: 0.8
+					length: 24,
+					foldback: 1.8
 					}],
 				["Label", {location:0.5}]
 			],
