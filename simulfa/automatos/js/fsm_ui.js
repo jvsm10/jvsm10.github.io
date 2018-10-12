@@ -85,9 +85,9 @@ var fsm = (function() {
 					length: 14,
 					foldback: 0.8
 					}],
-				["Label", {location:0.5}]
+				["Label", {location:1}]
 			],
-			Connector: ["StateMachine", {curviness:20}],
+			Connector: ["StateMachine", {curviness:0}],
 			PaintStyle: {strokeStyle:'black', lineWidth:2}
 		});
 
