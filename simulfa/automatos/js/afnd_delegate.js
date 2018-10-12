@@ -22,7 +22,7 @@ var afnd_delegate = (function() {
       jsPlumb.select({source:state}).each(function(connection) {
         if (connection.getLabel() === comparisonChar) {
           statusConnectors.push(connection);
-          connection.setPaintStyle({strokeStyle:'black'});
+          connection.setPaintStyle({strokeStyle:'green'});
         }
       });
     });
