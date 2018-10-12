@@ -17,7 +17,7 @@ var afd_delegate = (function() {
     jsPlumb.select({source:status.state}).each(function(connection) {
       if (connection.getLabel() === status.nextChar) {
         statusConnector = connection;
-        connection.setPaintStyle({strokeStyle:'#0a0'});
+        connection.setPaintStyle({strokeStyle:'black'});
       }
     });
     return self;
