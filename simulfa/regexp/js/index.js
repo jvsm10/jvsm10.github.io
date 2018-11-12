@@ -1,6 +1,7 @@
-const button = document.querySelector('.btn');
-const form   = document.querySelector('.form');
+// const button = document.querySelector('.btn');
+// const form   = document.querySelector('.form');
 function myFunction() {
+
   myFunction2();
     var x = document.getElementById("expr");
     var y = document.getElementById("entrada");
@@ -29,3 +30,16 @@ function myFunction2() {
       y.style.color = "white";
   }
 }
+
+/*
+Converte a expressao regular para automato
+*/
+function retoau(){
+  var exp = document.getElementById("expr").value;
+  if(exp[0] == '^')
+  exp = exp.substring(1,exp.length-1);
+  var automato = converter2automato(exp);
+  inc = 0;
+  graf(automato);
+}
+

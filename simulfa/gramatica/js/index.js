@@ -4,6 +4,16 @@ table = document.getElementById("table");
 multTabela = document.getElementById("multTabela");
 var tabelaGramatica = [];
 
+
+$(document).ready(function(){
+  $(document).keypress(function(e){
+	if(e.wich == 13 || e.keyCode == 13){
+        if($(entrada1).is(":focus") || $(entrada2).is(":focus"))
+        addHtmlTableRow();
+	}
+  })
+});
+
 function selecionar(entrada){
     entrada.select();
 }
@@ -69,6 +79,17 @@ function addHtmlTableRow(){ //Adicionar nova linha na tabela
     }
 }
 
+/**
+ * Adicionar a tabela presente na interface da aplicação;
+ */
+function addTable(entr1, entr2){ //Adicionar nova linha na tabela
+    $('#table tr:last').after('<tr scope="row"> <td>'+entr1+'</td><td>'+entr2+'</td></tr>');
+    selectedRowToInput();
+    document.getElementById("entrada1").focus();
+    document.getElementById("entrada1").select();
+}
+
+
 function addTabelaGramatica(entrada1, entrada2){ //PASSA TABELA PARA VETOR PARA MANIPULAÇÃO DAS DERIVAÇÕES
     for(var i=0; i<tabelaGramatica.length; i++){
         if(tabelaGramatica[i].naoTerminal == entrada1){
@@ -84,8 +105,7 @@ function addTabelaGramatica(entrada1, entrada2){ //PASSA TABELA PARA VETOR PARA 
 
     tabelaGramatica.push({
         naoTerminal: entrada1,
-        expressao: [entrada2],
-        verificar: false,
+        expressao: [entrada2]
     });
     return false;
 }
@@ -144,138 +164,134 @@ function removeSelectedRow(){ //REMOVER LINHA DA TABELA 1
 }
 
 
-        function grammar(){     //RESOLVE A EXPRESSAO RECURSIVAMENTE
-            var entrada = document.getElementById("entrada3");
-            tabelaGramatica = [];
-            for(var i =1; i<table.rows.length; i++){
-                table.rows[i].classList.remove('selecionado'); 
-                if(addTabelaGramatica(table.rows[i].cells[0].innerHTML, table.rows[i].cells[1].innerHTML)){
-                    table.deleteRow(i);
-                }
-            }
-            var exp;
-            if(resolver(table.rows[1].cells[0].innerHTML, table.rows[1].cells[0].innerHTML, entrada.value)){
-                entrada.style.color="white";
-                entrada.style.backgroundColor = "green";
-            }else{
-                entrada.style.color="white";
-                entrada.style.backgroundColor = "red";
-            } 
+function grammar(){     //RESOLVE A EXPRESSAO RECURSIVAMENTE
+    var entrada = document.getElementById("entrada3");
+    tabelaGramatica = [];
+    for(var i =1; i<table.rows.length; i++){
+        table.rows[i].classList.remove('selecionado'); 
+        if(addTabelaGramatica(table.rows[i].cells[0].innerHTML, table.rows[i].cells[1].innerHTML)){
+            table.deleteRow(i);
         }
+    }
+    var exp;
+    if(resolver(table.rows[1].cells[0].innerHTML, table.rows[1].cells[0].innerHTML, entrada.value)){
+        entrada.style.color="white";
+        entrada.style.backgroundColor = "green";
+    }else{
+        entrada.style.color="white";
+        entrada.style.backgroundColor = "red";
+    } 
+}
 
-        //-----------TROCAR
-        function resolver(exp, naoTerminal, entrada, expAnt){
-
-            var tam = tabelaGramatica.length;
-            if(exp == entrada && naoTerminal == "-0") return true;
-            
-            if(exp.length > entrada.length+1 )  return false;
-            for (var i = 0; i < tam; i++) {
-
-                if(tabelaGramatica[i].naoTerminal == naoTerminal){
-                    for(var j = 0; j<tabelaGramatica[i].expressao.length; j++){
-                        var der = tabelaGramatica[i].expressao[j];
-                        var naoTerminalDer = verificarDerivacao(der);
-                        var novoexp = exp.replace(naoTerminal, der);
-                        console.log(novoexp + " | " + expAnt);
-                        if(!verificarRecursao(novoexp, entrada)) continue; 
-                        if(expAnt == novoexp) continue;
-                        if(resolver(novoexp, naoTerminalDer[0], entrada, exp)){
-                            return true;    
-                        }
-                        
-                    }
-                }
-            }
-            return false;
-        }
 //-----------TROCAR
-        function verificarRecursao(exp,entrada){
-            var naoTerminalDer = verificarDerivacao(exp);
-            var teste = exp.substring(0,naoTerminalDer[1]);
-            var teste2 = exp.substring(naoTerminalDer[1]+1, exp.length);
-            console.log("Teste 1 = "+teste + "|Teste 2 = " +teste2+ "| tamanho = "+exp.length);
+function resolver(exp, naoTerminal, entrada, expAnt){
 
-            if(teste =="" && teste2 !=""){
-                if(entrada.endsWith(teste2)) return true;
-            }else if(teste !="" && teste2 ==""){
-                if(entrada.startsWith(teste)) return true;
-            }else if(teste !="" && teste2 !=""){
-                if(entrada.startsWith(teste) || entrada.endsWith(teste2))return true;
-            }else if(teste =="" && teste2 =="") return true;    
+    var tam = tabelaGramatica.length;
+    if(exp == entrada && naoTerminal == "-0") return true;
+    
+    if(exp.length > entrada.length+1 )  return false;
+    for (var i = 0; i < tam; i++) {
+
+        if(tabelaGramatica[i].naoTerminal == naoTerminal){
+            for(var j = 0; j<tabelaGramatica[i].expressao.length; j++){
+                var der = tabelaGramatica[i].expressao[j];
+                var naoTerminalDer = verificarDerivacao(der);
+                var novoexp = exp.replace(naoTerminal, der);
+                console.log(novoexp + " | " + expAnt);
+                if(!verificarRecursao(novoexp, entrada)) continue; 
+                if(expAnt == novoexp) continue;
+                if(resolver(novoexp, naoTerminalDer[0], entrada, exp)){
+                    return true;    
+                }
+                
+            }
+        }
+    }
+    return false;
+}
+//-----------TROCAR
+function verificarRecursao(exp,entrada){
+    var naoTerminalDer = verificarDerivacao(exp);
+    var teste = exp.substring(0,naoTerminalDer[1]);
+    var teste2 = exp.substring(naoTerminalDer[1]+1, exp.length);
+    console.log("Teste 1 = "+teste + "|Teste 2 = " +teste2+ "| tamanho = "+exp.length);
+
+    if(teste =="" && teste2 !=""){
+        if(entrada.endsWith(teste2)) return true;
+    }else if(teste !="" && teste2 ==""){
+        if(entrada.startsWith(teste)) return true;
+    }else if(teste !="" && teste2 !=""){
+        if(entrada.startsWith(teste) || entrada.endsWith(teste2))return true;
+    }else if(teste =="" && teste2 =="") return true;    
+    return false;
+}
+//-----------TROCAR
+function verificarDerivacao(der){ //NAO TERMINAL SEMPRE MAISCULO
+    var tam = der.length;
+    for(i=0; i<tam; i++){
+        if(der.charCodeAt(i)>=65 && der.charCodeAt(i)<=90){
+            return [der.charAt(i),i];
+        }
+    }
+    return ["-0",-1];
+}
+
+function verificarEntradaTeste(entrada){ //VERIFICAR SE ENTRADA JA FOI INSERIDA
+
+    for(var i=1; i<multTabela.rows.length ; i++){
+        if(multTabela.rows[i].cells[0].innerHTML == entrada){
             return false;
         }
-        //-----------TROCAR
-        function verificarDerivacao(der){ //NAO TERMINAL SEMPRE MAISCULO
-            var tam = der.length;
-            for(i=0; i<tam; i++){
-                if(der.charCodeAt(i)>=65 && der.charCodeAt(i)<=90){
-                    return [der.charAt(i),i];
-                }
-            }
-            return ["-0",-1];
-        }
+    }
+    return true;
+}
 
-        function verificarEntradaTeste(entrada){ //VERIFICAR SE ENTRADA JA FOI INSERIDA
+function addTestes(){ //ADD A TABELA 2
 
-            for(var i=1; i<multTabela.rows.length ; i++){
-                if(multTabela.rows[i].cells[0].innerHTML == entrada){
-                    return false;
-                }
-            }
-            return true;
-        }
+    var entrada1 = document.getElementById("entrada4").value;
+    if(verificarEntradaTeste(entrada1)){
+        var newRow = multTabela.insertRow(table.length);
+        cell1 = newRow.insertCell(0),
+        cell1.innerHTML = entrada1;
+        selectedRowToInput2();
+        document.getElementById("entrada4").focus();
+        document.getElementById("entrada4").select();
 
-        function addTestes(){ //ADD A TABELA 2
+    }
+}
 
-            var entrada1 = document.getElementById("entrada4").value;
-            if(verificarEntradaTeste(entrada1)){
-                var newRow = multTabela.insertRow(table.length);
-                cell1 = newRow.insertCell(0),
-                cell1.innerHTML = entrada1;
-                selectedRowToInput2();
-                document.getElementById("entrada4").focus();
-                document.getElementById("entrada4").select();
+function editTestes(){
+    var entrada1 = document.getElementById("entrada4").value;
+    if(tIndex != 0 ){
+        multTabela.rows[tIndex].cells[0].innerHTML = entrada1;
+    }
+}
 
-            }
-        }
+function removeTeste(){
+    if(tIndex != 0 ){
+        multTabela.deleteRow(tIndex);
+        document.getElementById("entrada4").value = "";
+    }
+}
 
 
-
-        function editTestes(){
-            var entrada1 = document.getElementById("entrada4").value;
-            if(tIndex != 0 ){
-                multTabela.rows[tIndex].cells[0].innerHTML = entrada1;
-            }
-        }
-
-        function removeTeste(){
-            if(tIndex != 0 ){
-                multTabela.deleteRow(tIndex);
-                document.getElementById("entrada4").value = "";
+function grammar2(){
+    for(z=1; z<multTabela.rows.length; z++){
+        var teste =  multTabela.rows[z].cells[0].innerHTML;
+        tabelaGramatica = [];
+        for(var i = 1; i<table.rows.length; i++){
+            if(addTabelaGramatica(table.rows[i].cells[0].innerHTML, table.rows[i].cells[1].innerHTML)){
+                table.deleteRow(i);
             }
         }
-
-
-        function grammar2(){
-            for(z=1; z<multTabela.rows.length; z++){
-                var teste =  multTabela.rows[z].cells[0].innerHTML;
-                tabelaGramatica = [];
-                for(var i = 1; i<table.rows.length; i++){
-                    if(addTabelaGramatica(table.rows[i].cells[0].innerHTML, table.rows[i].cells[1].innerHTML)){
-                        table.deleteRow(i);
-                    }
-                }
-                multTabela.rows[z].classList.remove("correto", "incorreto", "selecionado");
-                if(resolver(table.rows[1].cells[0].innerHTML, table.rows[1].cells[0].innerHTML, teste)){
-                    multTabela.rows[z].classList.toggle("correto");
-                }else{
-                    multTabela.rows[z].classList.toggle("incorreto");
-                }
-            }
+        multTabela.rows[z].classList.remove("correto", "incorreto", "selecionado");
+        if(resolver(table.rows[1].cells[0].innerHTML, table.rows[1].cells[0].innerHTML, teste)){
+            multTabela.rows[z].classList.toggle("correto");
+        }else{
+            multTabela.rows[z].classList.toggle("incorreto");
         }
-
-
+    }
+}
 
 
 /*--------------------------------------------------------------------------------------------*/
@@ -304,4 +320,14 @@ function removeSelectedRow(){ //REMOVER LINHA DA TABELA 1
 
 document.getElementById("defaultOpen").click();
 
+var txt = "  Gramatica - Projeto LFA  ";
 
+function titulo(){
+
+    document.title = txt;
+    txt = txt.substring(1, txt.length) + txt.charAt(0);
+
+    refresca = setTimeout("titulo()", 100);
+}
+
+titulo();

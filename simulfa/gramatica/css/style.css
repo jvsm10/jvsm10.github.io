@@ -184,7 +184,7 @@ gramatica-------------------------------------------------------------
 
 .entrada{
   margin-top: 10px;
-  width: 150px;
+  width: 130px;
   border-radius: 10px;
   padding: 2px;
 }
@@ -287,6 +287,7 @@ gramatica-----------------------------------------------------------------------
     background-color: #f1f1f1;
 border-top-left-radius: 10px;
 border-top-right-radius: 10px;
+text-align: center;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -299,6 +300,8 @@ border-top-right-radius: 10px;
     padding: 14px 16px;
     transition: 0.3s;
     margin: 0 auto;
+    text-align: center;
+    width: 50%;
 }
 
 /* Change background color of buttons on hover */

@@ -88,6 +88,21 @@ body {
 .btn:hover {
   background: #a09486;
 }
+#btnc {
+  display: block;
+  width: 100%;
+  padding: 20px;
+  font-family: "Verdana";
+  -webkit-appearance: none;
+  outline: 0;
+  border: 0;
+  color: white;
+  background: black;
+  transition: 0.3s;
+}
+#btnc:hover {
+  background: #a09486;
+}
 
 @-webkit-keyframes NO {
   from, to {
