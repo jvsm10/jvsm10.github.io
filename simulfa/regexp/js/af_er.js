@@ -231,7 +231,8 @@ function criarExpressao(fim){
     }
     final += simplificarEx(R[0][finais[p]][n]); 
   }
-  document.getElementById("expr").value = "^("+final+")$";
+  final = tirardesnecessario("^("+final+")$");
+  document.getElementById("expr").value = final;
 }
 
 function pegarTam(){
@@ -314,4 +315,21 @@ function arrumafim(fim){
     finais.push(fim[i+1]);
   }
   return finais;
+}
+
+function tirardesnecessario(final){
+  var copia = "";
+  copia += "^";
+  for(var i=1;i<final.length;i++){
+    if((final[i] == "|" && ((final[i-1] == "(" || final[i+1] == ")") ||(final[i-1] == "|")))){
+      i++;
+    }
+    if(final[i] == "(" && final[i+1] == ")"){
+      i+=2;
+      if(final[i] == '*')
+        i++;
+    }
+    copia+=final[i];
+  }
+  return copia;
 }
