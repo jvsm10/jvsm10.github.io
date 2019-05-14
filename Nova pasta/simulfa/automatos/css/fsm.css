@@ -140,6 +140,7 @@ h1 {
     text-align: center;
   background-color: inherit;
 border-width: 0px;
+visibility: hidden;
   }
 
 h5 {
@@ -206,7 +207,7 @@ border: 1px solid #8bc34a;
   -webkit-border-radius: 10px;
 }
 
-  #inicio {
+  #q0 {
     position: absolute;
     top: 40%;
     left: 0;
@@ -220,7 +221,7 @@ border: 1px solid #8bc34a;
     width: 80px;
     height: 80px;
     line-height: 80px;
-    background-color: #5EE0B3;
+    background-color: #d2db29;
     padding-left: 5px;
     cursor: move;
     text-align: center;
@@ -231,7 +232,7 @@ border: 1px solid #8bc34a;
     }
 
     div.current {
-      background-color: #8c8;
+      background-color: green;
     }
 
     div.plumbSource {
@@ -289,7 +290,7 @@ div.delete:hover {
 .fsmStatus {
   padding-left: 2px;
   padding-right: 2px;
-  font-size: 14pt;
+  font-size: 34pt;
   color:white;
   letter-spacing: 2px;
 }
@@ -443,6 +444,7 @@ span.tranEnd:before {
 /* jsPlumb z-index styles */
 ._jsPlumb_connector {
   z-index: 3;
+  opacity: 0.6;
 }
 
 ._jsPlumb_endpoint {
@@ -451,6 +453,9 @@ span.tranEnd:before {
 
 ._jsPlumb_overlay {
   z-index: 5;
+  padding-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 /* Image Configurations */
@@ -477,6 +482,10 @@ button.mais , img.mais{
   height: 30px;
   border-width: 0px;
   background-color: inherit;
+}
+#selecttest{
+  border-radius: 10px;
+  border-width: 0px;
 }
 
 img.delete {width:16px; height: 16px; background-position: 0 -198px;}
@@ -506,3 +515,59 @@ img.delete:hover {background-position: 0 -176px;}
 
 /*#resetBtn img {background-position: 0 -308px;}
 #resetBtn:disabled img {background-position: 0 -330px;}*/
+
+
+
+/*************************************************************************/
+
+.modalDialog {
+  position: fixed;
+  font-family: Arial, Helvetica, sans-serif;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 99999;
+  opacity: 0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+}
+.modalDialog:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modalDialog > div {
+  width: 400px;
+  position: relative;
+  margin: 10% auto;
+  padding: 5px 20px 13px 20px;
+  border-radius: 10px;
+  background: #fff;
+  background: -moz-linear-gradient(#fff, #999);
+  background: -webkit-linear-gradient(#fff, #999);
+  background: -o-linear-gradient(#fff, #999);
+}
+.close {
+  background: #606061;
+  color: #FFFFFF;
+  line-height: 25px;
+  position: absolute;
+  right: -12px;
+  text-align: center;
+  top: -10px;
+  width: 24px;
+  text-decoration: none;
+  font-weight: bold;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  -moz-box-shadow: 1px 1px 3px #000;
+  -webkit-box-shadow: 1px 1px 3px #000;
+  box-shadow: 1px 1px 3px #000;
+}
+.close:hover {
+  background: #00d9ff;
+}

@@ -7,13 +7,26 @@
 body {
   font-family: "Roboto";
   font-size: 14px;
-  background-size: 200% 100% !important;
+  /*background-size: 200% 100% !important;*/
   -webkit-animation: move 10s ease infinite;
           animation: move 10s ease infinite;
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
   background: linear-gradient(45deg, #49D49D 10%, #A2C7E5 90%);
-  height: 100vh;
+  position: relative;
+  margin: 0;
+  padding-bottom: 4.4rem;
+  min-height: 100%;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
 }
 
 .user {
