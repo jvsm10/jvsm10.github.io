@@ -1,0 +1,239 @@
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  height: 100vh;
+  background-color: rgb(225,225,225);
+  -webkit-tap-highlight-color: transparent;
+  khtml-tap-highlight-color: transparent; }
+
+  #container{
+    position: relative;
+    margin-bottom: 25px;;
+  }
+
+  #heuri{
+    text-align: center;
+    margin-top: 10px;
+  }
+  #heuri a{
+    color: #3498DB;
+    cursor: pointer; 
+  }
+  #heuri a#shuffle{
+    color:white;
+  }
+
+  footer{
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
+    background-color: #3498DB;
+    padding: 5px;
+  }
+
+  .moves{
+    background-color: rgb(225,225,225);
+    border-width: 0ch;
+    border: rgb(225,225,225);
+  }
+  figcaption{
+    text-align: center;
+  }
+  span{
+    color: #E74C3C;
+  }
+
+.square {
+  margin: auto;
+  height: 320px;
+  width: 320px;}
+  .square a {
+    cursor: pointer; }
+  .square .tiles {
+    list-style-type: none;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-clip: border-box;
+    border: 18px solid black;
+    border-radius: 10px;
+    background-color: black; }
+    .square .tiles .tile {
+      position: absolute;
+      color: #3498DB;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 30%;
+      height: 30%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 50px;
+      left: 0%;
+      top: 0%;
+      transition: all 0.5s linear;
+      transition-timing-function: ease;
+      box-sizing: border-box; }
+
+        form {
+         
+          display: inline-block;
+        }
+        
+        form > input {
+          width: 40px;
+          border: none;
+          font-size: 18px;
+          text-align: right;
+          border-radius:5px 0 0 5px;
+          padding: 2px;
+        }
+        
+        form > a {
+          background: #3498DB;
+          border: none;
+          color: #fff;
+          border-radius: 0 5px 5px 0;
+          font-size: 18px;
+          padding: 2px;
+        }
+
+        
+.switch{
+    width:40px;
+    height:10px;
+    margin:0 auto;
+    margin-top: 5px;
+    position:relative;
+ 
+}
+ 
+.switch input{
+    display:block;
+    width:100%;
+    height: 100%;
+ 
+    position:absolute;
+    top:0;
+    left:0;
+    z-index: 10;
+ 
+    opacity: 0;
+    cursor: pointer;
+ 
+}
+ 
+.switch label{
+    display: block;
+    width: 100%;
+    height: 100%;
+ 
+    background: -moz-linear-gradient(#750000, #B20000);
+    background: -ms-linear-gradient(#750000, #B20000);
+    background: -o-linear-gradient(#750000, #B20000);
+    background: -webkit-linear-gradient(#750000, #B20000);
+    background: linear-gradient(#750000, #B20000);
+ 
+    border-radius: 40px;
+}
+ 
+.switch label:after{
+    content: "";
+ 
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
+    z-index: -1;
+ 
+    background: -moz-linear-gradient(#EEEEEE, #AAAAAA);
+    background: -ms-linear-gradient(#EEEEEE, #AAAAAA);
+    background: -o-linear-gradient(#EEEEEE, #AAAAAA);
+    background: -webkit-linear-gradient(#EEEEEE, #AAAAAA);
+    background: linear-gradient(#EEEEEE, #AAAAAA);
+ 
+    border-radius: inherit;
+ 
+}
+ 
+.switch label span{
+    display: block;
+    width: 60%;
+    height: 100%;
+    background: #C0C0C0;
+ 
+    position: absolute;
+    z-index: 2;
+    right: 41%;
+    top: 0;
+ 
+    background: -moz-linear-gradient(#E0E0E0, #A0A0A0);
+    background: -ms-linear-gradient(#E0E0E0, #A0A0A0);
+    background: -o-linear-gradient(#E0E0E0, #A0A0A0);
+    background: -webkit-linear-gradient(#E0E0E0, #A0A0A0);
+    background: linear-gradient(#E0E0E0, #A0A0A0);
+ 
+    border-radius: inherit;
+ 
+}
+ 
+.switch label span:after {
+    content: "";
+ 
+    position: absolute;
+    left: 15%;
+    top: 25%;
+ 
+    width: 70%;
+    height: 50%;
+ 
+    background: -moz-linear-gradient(#F7F7F7, #CCCCCC);
+    background: -ms-linear-gradient(#F7F7F7, #CCCCCC);
+    background: -o-linear-gradient(#F7F7F7, #CCCCCC);
+    background: -webkit-linear-gradient(#F7F7F7, #CCCCCC);
+    background: linear-gradient(#F7F7F7, #CCCCCC);
+    border-radius: inherit;
+}
+ 
+.switch label span:before {
+    content: "off";
+ 
+    position: absolute;
+    top: 50%;
+    margin-top: -12px;
+    right: -50%;
+ 
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    font-size: 0px;
+ 
+    color: #fff;
+ 
+}
+ 
+.switch input:checked ~ label {
+ 
+    background: -moz-linear-gradient(#004010, #1A6600);
+    background: -ms-linear-gradient(#004010, #1A6600);
+    background: -o-linear-gradient(#004010, #1A6600);
+    background: -webkit-linear-gradient(#004010, #1A6600);
+    background: linear-gradient(#004010, #1A6600);
+}
+ 
+.switch input:checked ~ label span{
+    right: -2px;
+}
+ 
+.switch input:checked ~ label span:before {
+    content: "on";
+    right: 115%;
+ 
+}

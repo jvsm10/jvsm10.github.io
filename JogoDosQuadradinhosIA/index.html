@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+
+    <title>Jogo dos quadradinhos</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+</head>
+<body style="margin:0px;height: 100%;">
+    <div id="container">
+<h3 style="text-align: center">Trabalho Prático 1 IA - Jogo dos Quadradinhos</h3>
+    <div class="square">
+
+        <ul class="tiles">
+            <li class="tile">1</li>
+            <li class="tile">2</li>
+            <li class="tile">3</li>
+            <li class="tile">4</li>
+            <li class="tile">5</li>
+            <li class="tile">6</li>
+            <li class="tile">7</li>
+            <li class="tile">8</li>
+        </ul>
+
+      
+    </div>
+    <div id="heuri">
+        <a id="solve">Heuristica 1</a> 
+        | <a id="solve2">Heuristica 2</a> | 
+        <a id="solve3">Heuristica 3</a> | 
+        <a id="solve1">Busca Aleatoria</a>
+        <br>
+        Insira o número de movimentos: <form action='/' method='post'>
+        <input type="text" name="" id="shufflenum"><a id="shuffle">Go!</a>  
+          </form>
+       
+    <br>Número de movimentos: <span id="moves"></span> <br>
+    Animações
+        <div class="switch">
+            <input type="checkbox" name="anima" id="anima" checked/>
+            <label for="anima"><span></span></label>
+        </div>
+    <span id="move_hist"></span> 
+        </div>
+    </div>
+   <footer>João Victor S. Menezes - Gustavo Lopes &copy; 2019</footer>
+
+<script type="text/javascript" src="js/heuristic.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/minHeap.js"></script>
+</body>
+</html>
